@@ -67,24 +67,43 @@ const graduates = [{"id":1,"first_name":"Cynde","university":"Missouri Southern 
 {"id":9,"first_name":"Michail","university":"Universidad Católica de Ávila","email":"mrome8@shinystat.com"},
 {"id":10,"first_name":"Hube","university":"Universitat Rovira I Virgili Tarragona","email":"hlethbrig9@foxnews.com"}]
 
-/* Request 1: Create a new array called universities that contains all the univeristies in the graduates array.  
+/* Request 1: Create a new array called universities that contains all the univeristies in the graduates array. */
 
-Once you have the new array created, sort the universities alphabetically and log the result. */
-const universities = [];
-console.log(universities)
+let universities = [];
+for (i=0; i<graduates.length; i++) {
+  universities.push(graduates[i].university);
+}
+console.log(universities);
 
-/* Request 2: Create a new array called contactInfo that contains both first name and email of each student. 
+// Once you have the new array created, sort the universities alphabetically and log the result. 
 
-The resulting contact information should have a space between the first name and the email information like this: 
-Name email@example.com
+console.log(universities.sort());
 
-Log the result of your new array. */
-const contactInfo = [];
+/* Request 2: Create a new array called contactInfo that contains both first name and email of each student. */
+
+let contactInfo = [];
+for (i=0; i<graduates.length; i++) {
+    contactInfo.push(graduates[i].first_name);
+    contactInfo.push(graduates[i].email);
+}
+
+
+//The resulting contact information should have a space between the first name and the email information like this: 
+//Name email@example.com
+
+// Log the result of your new array. 
 console.log(contactInfo);
 
 
 /* Request 3: Find out how many universities have the string "Uni" included in their name. Create a new array called uni that contains them all. Log the result. */
 const uni = [];
+
+for (i=0; i<graduates.length; i++) {
+  if (graduates[i].university === "Uni") {
+    uni.push(graduates[i]);
+  }
+}
+
 console.log(uni);
 
 
@@ -110,6 +129,9 @@ The zoo wants to display both the scientific name and the animal name in front o
 
 */
 const animalNames = [];
+  zooAnimals.forEach(function(element) {
+    animalNames.push(`${element.animal_name} ${element.scientific_name}`)
+  });
 console.log(animalNames);
 
 /* Request 2: .map()    
@@ -119,6 +141,10 @@ The zoos need a list of all their animal's names (names only, not scientific) co
 */
 
 const lowerCase = [];
+  zooAnimals.map(function(element) {
+    lowerCase.push(`${element.animal_name.toLowerCase()}`)
+  });
+
 console.log(lowerCase); 
 
 /* Request 3: .filter() 
@@ -126,17 +152,25 @@ console.log(lowerCase);
 The zoos are concenred about animals with a lower population count. Find out which animals have a population less than 5.
 
 */
-const largerPopulation = [];
-console.log(largerPopulation);
+const lowerPopulation =  zooAnimals.filter(function(element) {
+  return element.population < 5;
+});
+
+console.log(lowerPopulation);
 
 /* Request 4: .reduce() 
 
 The zoos need to know their total animal population across the United States.  Find the total population from all the zoos using the .reduce() method.
 
 */
-const populationTotal = 0;
-console.log(populationTotal);
-
+let animalPop = [];
+zooAnimals.forEach(function(element) {
+    animalPop.push(element.population);
+});
+let totalPopulation = animalPop.reduce(function(total, element) {
+    return total += element;
+});
+console.log(totalPopulation);
 
 /* 
 
